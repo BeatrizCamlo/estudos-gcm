@@ -1,4 +1,10 @@
-package main.java.com.imd.respository;
+package src.main.java.com.imd.respository;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import src.main.java.com.imd.entity.Cliente;
+import src.main.java.com.imd.entity.Pedido;
 
 public class ClienteRepository implements RepositoryInterface<Cliente> {
     private List<Cliente> clientes;
@@ -18,14 +24,13 @@ public class ClienteRepository implements RepositoryInterface<Cliente> {
     }
 
     @Override
-    public void buscarPorNome(String nome) {
+    public boolean buscarPorNome(String nome) {
         for (Cliente cliente : clientes) {
             if (cliente.getNome().equals(nome)) {
-                System.out.println("Cliente encontrado: " + cliente.getNome());
-                return;
+                return true;
             }
         }
-        System.out.println("Cliente não encontrado.");
+        return false;
     }
 
     public List<Pedido> buscarPedidosPorCliente(String nomeCliente){
@@ -36,5 +41,14 @@ public class ClienteRepository implements RepositoryInterface<Cliente> {
             }
         }
         return pedidosDoCliente;
-    }    
+    }
+
+    public Cliente getClientePorNome(String nome) {
+        for (Cliente c : clientes) {
+            if (c.getNome().equalsIgnoreCase(nome)) {
+                return c;
+            }
+        }
+        return null;
+    }
 }

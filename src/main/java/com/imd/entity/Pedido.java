@@ -1,14 +1,14 @@
-package main.java.com.imd.entity;
+package src.main.java.com.imd.entity;
 
 public class Pedido {
     private String nome;
     private Cliente donoPedido;
     private EnumEstadoPedido estado;
 
-    public Pedido(String nome, Cliente donoPedido) {
+    public Pedido(String nome, Cliente donoPedido, EnumEstadoPedido estado) {
         this.nome = nome;
         this.donoPedido = donoPedido;
-        this.estado = EnumEstadoPedido.RECEBIDO;
+        this.estado = estado;
     }
 
     public String getNome() {

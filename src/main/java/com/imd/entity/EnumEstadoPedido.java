@@ -1,4 +1,4 @@
-package main.java.com.imd.entity;
+package src.main.java.com.imd.entity;
 
 public enum EnumEstadoPedido {
     RECEBIDO,

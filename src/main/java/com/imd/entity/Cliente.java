@@ -1,5 +1,7 @@
-package main.java.com.imd.entity;
+package src.main.java.com.imd.entity;
 
+import java.util.ArrayList;
+import java.util.List;
 public class Cliente{
     private String nome;
     private List<Pedido> pedidos;
