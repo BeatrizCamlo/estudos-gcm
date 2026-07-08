@@ -1,4 +1,8 @@
-package main.java.com.imd.controller;
+package src.main.java.com.imd.controller;
+
+import src.main.java.com.imd.entity.EnumEstadoPedido;
+import src.main.java.com.imd.entity.Pedido;
+import src.main.java.com.imd.respository.PedidoRepository;
 
 public class PizzariaController {
     private PedidoRepository pedidoRepository;
@@ -9,10 +13,10 @@ public class PizzariaController {
 
     public void atualizarEstadoPedido(Pedido pedido, EnumEstadoPedido novoEstado) {
         pedido.setEstado(novoEstado);
-        pedidoRepository.atualizarPedido(pedido);
+        pedidoRepository.atualizarPedido(novoEstado);
     }
 
-    public void exibirPedidos() {
+    public void listarPedidos() {
         System.out.println(" ============== Pedidos ==============");
         System.out.println("-------------------------------------------------------------");
         for (Pedido pedido : pedidoRepository.getPedidos()) {

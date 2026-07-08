@@ -1,7 +1,8 @@
-package main.java.com.imd.controller;
+package src.main.java.com.imd.controller;
 
-import main.java.com.imd.entity.Cliente;
-import main.java.com.imd.entity.Pedido;
+import src.main.java.com.imd.entity.Cliente;
+import src.main.java.com.imd.entity.EnumEstadoPedido;
+import src.main.java.com.imd.entity.Pedido;
 
 public class ClienteController {
     
@@ -12,7 +13,7 @@ public class ClienteController {
     }
 
     public void adicionarPedido(String nomePedido) {
-        Pedido pedido = new Pedido(nomePedido, cliente);
+        Pedido pedido = new Pedido(nomePedido, cliente, EnumEstadoPedido.RECEBIDO);
         cliente.adiconarPedidos(pedido);
     }
 
