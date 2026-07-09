@@ -13,7 +13,7 @@ public class PizzariaController {
 
     public void atualizarEstadoPedido(Pedido pedido, EnumEstadoPedido novoEstado) {
         pedido.setEstado(novoEstado);
-        pedidoRepository.atualizarPedido(novoEstado);
+        pedidoRepository.atualizarPedido(pedido, novoEstado);
     }
 
     public void listarPedidos() {

@@ -67,35 +67,43 @@ public class View {
                 }
 
             } else if (op == 2) {
-                System.out.println("\n============ Pizzaria Bom Sabor ============");
-                pizzariaController.listarPedidos();
+                int subOp = 0;
 
-                System.out.println("1 - Atualizar status de um pedido");
-                System.out.println("2 - Voltar");
-                int subOp = sc.nextInt();
+                do{
+                    System.out.println("\n============ Pizzaria Bom Sabor ============");
+                    pizzariaController.listarPedidos();
 
-                if (subOp == 1) {
-                    System.out.println("Insira o nome do pedido: ");
-                    String nomePedido = sc.next();
+                    System.out.println("1 - Atualizar status de um pedido");
+                    System.out.println("2 - Voltar");
+                    System.out.print("Escolha uma opção: ");
+                    subOp = sc.nextInt();
+                    sc.nextLine();
+
+                    if (subOp == 1) {
+                        System.out.println("Insira o nome do pedido: ");
+                        String nomePedido = sc.nextLine();
 
 
-                    if (pedidoRepository.buscarPorNome(nomePedido)) {
-                        System.out.println("Escolha: 1-RECEBIDO, 2-EM_PREPARO, 3-PRONTO");
-                        int status = sc.nextInt();
-                        if (status == 1) {
-                            pedidoRepository.atualizarPedido(EnumEstadoPedido.RECEBIDO);
+                        if (pedidoRepository.buscarPorNome(nomePedido) != null  ) {
+                            Pedido pedido = pedidoRepository.buscarPorNome(nomePedido);
+                            System.out.println("Escolha: 1-RECEBIDO, 2-EM_PREPARO, 3-PRONTO");
+                            int status = sc.nextInt();
+                            if (status == 1) {
+                                pizzariaController.atualizarEstadoPedido(pedido, EnumEstadoPedido.RECEBIDO);
+                            }
+                            else if (status == 2) {
+                                pizzariaController.atualizarEstadoPedido(pedido, EnumEstadoPedido.EM_PREPARO);
+                            }
+                            else if (status == 3) {
+                                pizzariaController.atualizarEstadoPedido(pedido, EnumEstadoPedido.PRONTO);
+                            }
+                            System.out.println("Status atualizado!");
+                        } else {
+                            System.out.println("Pedido não encontrado.");
                         }
-                        else if (status == 2) {
-                            pedidoRepository.atualizarPedido(EnumEstadoPedido.EM_PREPARO);
-                        }
-                        else if (status == 3) {
-                            pedidoRepository.atualizarPedido(EnumEstadoPedido.PRONTO);
-                        }
-                        System.out.println("Status atualizado!");
-                    } else {
-                        System.out.println("Pedido não encontrado.");
                     }
-                }
+                } while (subOp != 2);
+                
             }
         }
         System.out.println("Programa encerrado.");
