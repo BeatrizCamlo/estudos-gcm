@@ -24,13 +24,13 @@ public class ClienteRepository implements RepositoryInterface<Cliente> {
     }
 
     @Override
-    public boolean buscarPorNome(String nome) {
+    public Cliente buscarPorNome(String nome) {
         for (Cliente cliente : clientes) {
             if (cliente.getNome().equals(nome)) {
-                return true;
+                return cliente;
             }
         }
-        return false;
+        return null;
     }
 
     public List<Pedido> buscarPedidosPorCliente(String nomeCliente){

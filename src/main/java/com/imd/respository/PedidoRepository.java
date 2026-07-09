@@ -24,23 +24,21 @@ public class PedidoRepository implements RepositoryInterface<Pedido> {
     }
 
     @Override
-    public boolean buscarPorNome(String nome) {
+    public Pedido buscarPorNome(String nome) {
         for (Pedido pedido : pedidos) {
             if (pedido.getNome().equals(nome)) {
-                return true;
+                return pedido;
             }
         }
-        return false;
+        return null;
     }
 
     public void adicionarPedido(Pedido p) {
     this.pedidos.add(p);
     }
 
-    public void atualizarPedido(EnumEstadoPedido novoEstado) {
-        for (Pedido pedido : pedidos) {
-            pedido.setEstado(novoEstado);
-        }
+    public void atualizarPedido(Pedido pedido, EnumEstadoPedido novoEstado) {
+        pedido.setEstado(novoEstado);
     }
 
 
