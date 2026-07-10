@@ -1,0 +1,44 @@
+name: ci main
+
+on: 
+    push:
+        branches: [main]
+    pull_request:
+        branches: [main]
+
+env:
+    JAVA_VERSION: 17
+    JAVA_DISTRIBUTION: temurin
+
+jobs:
+    checkstyle:
+        runs-on: ubuntu-latest
+        steps:
+        - uses: actions/checkout@v4
+
+        - name: configurar jdk 17
+          uses: actions/setup-java@v4
+          with:
+            java-version: ${{env.JAVA_DISTRIBUTION}}
+            java-distribution: ${{env.JAVA_DISTRIBUTION}}
+            cache: 'maven'
+        
+        - name: verificar código estático
+          run: mvn checkstyle:check
+        
+    
+    build:
+        needs: checkstyle
+        runs-on: ubutun-latest
+        steps:
+            - uses: actions/checkout@v4
+
+            - name: usar jdk 17
+              uses: actions/setup-java@v4
+              with: 
+                java-version: ${{env.JAVA_VERSION}}
+                java-distribution: ${{env.JAVA_DISTRIBUTION}}
+                cache: 'maven'
+            
+            - name: buildar projeto
+              run: mvn clean install -DskipTests
