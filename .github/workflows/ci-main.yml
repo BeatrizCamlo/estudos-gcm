@@ -19,11 +19,7 @@ jobs:
         - name: configurar jdk 17
           uses: actions/setup-java@v4
           with:
-<<<<<<< HEAD
             java-version: ${{ env.JAVA_VERSION }}
-=======
-            java-version: ${{ env.JAVA_DISTRIBUTION }}
->>>>>>> 12ea7aef7424b39f224596de485969e00a63d5b7
             distribution: ${{ env.JAVA_DISTRIBUTION }}
             cache: 'maven'
         
